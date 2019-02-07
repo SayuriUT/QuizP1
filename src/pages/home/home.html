@@ -1,14 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      VivaAnuncios
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let inmueble of inmuebles" col-6>
+        <ion-card>
+          <img *ngIf="inmueble.hasOwnProperty('pictures')"
+          src= '{{inmueble.pictures[0].url}}'>
+          <ion-card-content>
+            <h2>
+                {{inmueble.geo.displayName}}, {{inmueble.geo.name}}
+            </h2>
+            <p *ngIf="inmueble.hasOwnProperty('price')">
+                {{inmueble.price.formattedAmount}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
